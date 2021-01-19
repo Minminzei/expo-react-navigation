@@ -2,7 +2,7 @@
 Expo, React Native, React Navigationを使ったios/android/web向けのサンプルアプリです
 
 #### demo
-https://expo.io/accounts/minminzei/projects/usagi
+https://exp.host/@minminzei/usagi
 
 #### 動作手順
 1. cocoapodsインストール
