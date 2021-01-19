@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": false,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@containers/*" : ["./src/containers/*"],
+      "@components/*" : ["./src/components/*"],
+      "@modules/*" : ["./src/modules/*"],
+      "@libs/*" : ["./src/libs/*"],
+      "@assets/*" : ["./assets/*"],
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "ios",
+    "android",
+    "assets",
+    "node_modules",
+    "webpack.config.js",
+    "src/libs/datasources/images"
+  ]
+}

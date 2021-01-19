@@ -1,0 +1,44 @@
+{
+  "name": "usagi",
+  "displayName": "USAGI",
+  "expo": {
+    "name": "usagi",
+    "slug": "usagi",
+    "version": "1.0.0",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "./assets/*"
+    ],
+    "description": "expoデモアプリ",
+    "android": {
+      "package": "com.minminzei.expodemo",
+      "icon": "./assets/icon.png",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET",
+        "READ_PHONE_STATE",
+        "com.htc.launcher.permission.READ_SETTINGS"
+      ],
+      "versionCode": 1
+    },
+    "ios": {
+      "bundleIdentifier": "com.minminzei.expodemo",
+      "supportsTablet": true,
+      "isTabletOnly": false,
+      "icon": "./assets/icon.png",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "写真をアップロードできるようになります",
+        "NSCameraUsageDescription": "写真をアップロードできるようになります",
+        "NSMicrophoneUsageDescription": "動画を撮影できるようになります"
+      }
+    }
+  }
+}
