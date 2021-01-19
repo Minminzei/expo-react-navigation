@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import Ripple from 'react-native-material-ripple';
@@ -7,10 +7,10 @@ import { Color } from '@libs/style';
 import Events from '@containers/Events';
 import Users from '@containers/Users';
 import Profile from '@containers/Profile';
-import { Data } from '@modules/Profile';
-import { Image } from '@libs/ui';
+import { RootProps } from '@libs/common';
 
 const Tab = createBottomTabNavigator();
+const MenuHeight = 60;
 
 const Css = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const Css = StyleSheet.create({
     borderTopWidth: 1,
     borderStyle: 'solid',
     borderColor: Color.black2,
-    paddingTop: 8,
+    height: MenuHeight,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -49,11 +49,44 @@ const Css = StyleSheet.create({
   },
 });
 
+interface State {
+  height: number;
+}
 
-export default class MainScreen extends React.Component {
+const Screens = {
+  Users: {
+    component: props => <Users {...props} />,
+    options: {
+      title: 'ユーザー',
+      tabBarLabel: 'trophy-outline',
+    },
+  },
+  Events: {
+    component: props => <Events {...props} />,
+    options: {
+      title: 'ラウンド',
+      tabBarLabel: 'calendar-text',
+    },
+  },
+  Profile: {
+    component: props => <Profile {...props} />,
+    options: {
+      title: 'プロフィール',
+      tabBarLabel: 'account-circle-outline',
+    },
+  },
+}
+
+const initialRouteName = 'Events';
+
+export default class MainScreen extends React.Component<RootProps, State> {
   constructor(props) {
     super(props);
     this.tabBar = this.tabBar.bind(this);
+    const { height } = Dimensions.get('window');
+    this.state = {
+      height: height - MenuHeight,
+    };
   }
 
   tabBar(params:BottomTabBarProps) : JSX.Element {
@@ -86,35 +119,21 @@ export default class MainScreen extends React.Component {
     return (
       <Tab.Navigator
         tabBar={this.tabBar}
-        initialRouteName="Events"
+        initialRouteName={initialRouteName}
       >
-        <Tab.Screen
-          name="Users"
-          options={{
-            title: 'ユーザー',
-            tabBarLabel: 'trophy-outline',
-          }}
-        >
-          {props => <Users {...props} />}
-        </Tab.Screen>
-        <Tab.Screen
-          name="Events"
-          options={{
-            title: 'ラウンド',
-            tabBarLabel: 'calendar-text',
-          }}
-        >
-          {props => <Events {...props} />}
-        </Tab.Screen>
-        <Tab.Screen
-          name="Profile"
-          options={{
-            title: 'プロフィール',
-            tabBarLabel: 'account-circle-outline',
-          }}
-        >
-          {props => <Profile {...props} />}
-        </Tab.Screen>
+        {Object.keys(Screens).map(screen => (
+          <Tab.Screen
+            name={screen}
+            options={Screens[screen].options}
+            key={screen}
+          >
+            {props => (
+              <View style={{ height: this.state.height }}>
+                {Screens[screen].component(props)}
+              </View>
+            )}
+          </Tab.Screen>
+        ))}
       </Tab.Navigator>
     );
   }

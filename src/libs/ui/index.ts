@@ -7,6 +7,7 @@ import TextInput from './TextInput';
 import Camera from './Camera';
 import ImagePicker from './ImagePicker';
 import Picker from './Picker';
+import Toast from './Toast';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
 
 export {
@@ -19,5 +20,6 @@ export {
   Camera,
   ImagePicker,
   Picker,
+  Toast,
   KeyboardAvoidingView,
 };

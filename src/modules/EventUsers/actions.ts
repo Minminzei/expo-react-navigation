@@ -1,6 +1,6 @@
 import db from '@libs/sql';
 import * as _ from 'lodash';
-import types, { Data } from './types';
+import types from './types';
 import EventUser, { schema } from '@libs/models/EventUsers';
 import { schema as eventSchema } from '@libs/models/Events';
 import { schema as userSchema } from '@libs/models/Users';

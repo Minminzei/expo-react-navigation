@@ -10,6 +10,9 @@ const Css = StyleSheet.create({
     backgroundColor: Color.white1,
     justifyContent: 'center',
     alignItems: 'flex-start',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: Color.black3,
   },
 });
 

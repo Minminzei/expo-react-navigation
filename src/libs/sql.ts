@@ -189,9 +189,7 @@ class Database {
               `DELETE FROM ${table} WHERE id = ?`,
               [id],
               (transaction: SQLite.SQLTransaction, resultSet: SQLite.SQLResultSet) => {
-                const { rows } = resultSet;
-                const data = rows[0];
-                resolve(data.count);
+                resolve(null);
               },
               (transaction: SQLite.SQLTransaction, error: SQLite.SQLError) => {
                 reject(error);

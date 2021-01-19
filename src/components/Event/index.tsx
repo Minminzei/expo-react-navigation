@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import {
-  View, StyleSheet, Image, TouchableOpacity, Alert,
+  View, StyleSheet, Image, TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Data } from '@modules/Events';
 import { Users } from '@modules/EventUsers';
 import EventUser from '@libs/models/EventUsers';
 import { Data as Profile } from '@modules/Profile';
-import { Text, Loading, Button, ScrollView } from '@libs/ui';
+import { Text, Loading, Button, ScrollView, Toast } from '@libs/ui';
 import { RootProps } from '@libs/common';
 import { Color, FontSize, Font } from '@libs/style';
 import Header from '@components/Apps/header';
@@ -121,6 +121,7 @@ interface State {
   loading: boolean;
   loaded: boolean;
   joined: boolean;
+  message: string | null;
 }
 
 export default class EventComponent extends React.Component<Props, State> {
@@ -133,6 +134,7 @@ export default class EventComponent extends React.Component<Props, State> {
       loading: false,
       loaded: false,
       joined: false,
+      message: null,
     };
   }
 
@@ -170,12 +172,14 @@ export default class EventComponent extends React.Component<Props, State> {
           event_id: this.props.route.params.id,
         }));
       }
-      // await this.props.fetchUsersByEvent(this.props.id);
+      await this.props.fetchUsersByEvent(this.props.route.params.id);
       this.setState({
         loading: false,
         joined: this.isJoined,
       });
-      Alert.alert(!data ? '参加しました' : 'キャンセルしました');
+      this.setState({
+        message: !data ? '参加しました' : 'キャンセルしました',
+      });
     } catch (e) {
       throw e;
     }
@@ -300,6 +304,12 @@ export default class EventComponent extends React.Component<Props, State> {
             onPress={() => this.save()}
           />
         </View>
+        {this.state.message ? (
+          <Toast
+            message={this.state.message}
+            onClose={() => this.setState({ message: null })}
+          />
+        ) : null}
       </View>
     );
   }

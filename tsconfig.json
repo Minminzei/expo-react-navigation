@@ -18,8 +18,7 @@
       "@containers/*" : ["./src/containers/*"],
       "@components/*" : ["./src/components/*"],
       "@modules/*" : ["./src/modules/*"],
-      "@libs/*" : ["./src/libs/*"],
-      "@assets/*" : ["./assets/*"],
+      "@libs/*" : ["./src/libs/*"]
     }
   },
   "include": [

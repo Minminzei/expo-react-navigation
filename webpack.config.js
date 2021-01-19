@@ -45,10 +45,6 @@ const config = {
         test: /\.(jpg|png)$/,
         loaders: 'url-loader'
       },
-      {
-        test: /\.html$/,
-        loaders: 'html-loader'
-      },
     ],
   },
   optimization: {

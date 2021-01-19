@@ -16,7 +16,7 @@ const CACHE_DAY = 3;
 
 async function shouldInitialize() : Promise<boolean> {
   try {
-    if (Platform.OS !== 'web') {
+    if (Platform.OS === 'web') {
       return true;
     }
     const res = await db.get(schema.name, primaryId);
@@ -37,7 +37,7 @@ async function shouldInitialize() : Promise<boolean> {
     if (freeByte < MIN_DESK) {
       return true;
     }
-    return false;
+    return true;
   } catch (e) {
     throw e;
   }

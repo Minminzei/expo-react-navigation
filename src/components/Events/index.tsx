@@ -1,17 +1,14 @@
 import * as React from 'react';
 import {
-  View, StyleSheet, Image, FlatList, RefreshControl,
+  View, StyleSheet, FlatList, RefreshControl,
 } from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import { Data, List } from '@modules/Events';
 import { RootProps } from '@libs/common';
-import { Text } from '@libs/ui';
+import { Text, Image } from '@libs/ui';
 import { CardStyle, Color } from '@libs/style';
 
 const Css = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   card: {
     marginBottom: 0,
   },
@@ -122,29 +119,27 @@ export default class EventsComponent extends React.Component<Props, State> {
 
   render() : JSX.Element {
     return (
-      <View style={Css.container}>
-        <FlatList
-          data={this.state.loaded ? this.props.list.data : []}
-          keyExtractor={(item) => `item-${item.id}`}
-          renderItem={({ item }) => this.renderItem(item)}
-          onEndReached={() => {
-            if (this.props.list.meta.canPaging && !this.state.loading) {
-              this.fetch({
-                page: this.props.list.meta.currentPage + 1,
-              });
-            }
-          }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={() => this.fetch({
-                page: 1,
-                refreshing: true,
-              })}
-            />
+      <FlatList
+        data={this.state.loaded ? this.props.list.data : []}
+        keyExtractor={(item) => `item-${item.id}`}
+        renderItem={({ item }) => this.renderItem(item)}
+        onEndReached={() => {
+          if (this.props.list.meta.canPaging && !this.state.loading) {
+            this.fetch({
+              page: this.props.list.meta.currentPage + 1,
+            });
           }
-        />
-      </View>
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={() => this.fetch({
+              page: 1,
+              refreshing: true,
+            })}
+          />
+        }
+      />
     );
   }
 }
