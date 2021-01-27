@@ -10,6 +10,7 @@ import {
   Button, Loading, TextInput, KeyboardAvoidingView,
   ImagePicker, Picker, Camera, ScrollView, Text,
 } from '@libs/ui';
+import { navigation, setMessage } from '@libs/redux';
 import { FilePath } from '@modules/Apps';
 import { Events } from '@modules/EventUsers';
 import { RootProps } from '@libs/common';
@@ -227,7 +228,7 @@ export default class ProfileComponent extends React.Component<Props, State> {
         this.setState({ loaded: true });
       }
     } catch (e) {
-      throw e;
+      setMessage(e.message);
     }
   }
 
@@ -280,7 +281,6 @@ export default class ProfileComponent extends React.Component<Props, State> {
   }
 
   move(id: string) : void {
-    const { navigation } = this.props;
     navigation.navigate('Event', { id });
   }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   View, StyleSheet, ActivityIndicator,
 } from 'react-native';
-import Ripple from 'react-native-material-ripple';
+import Ripple from '../Ripple';
 import Text from '../Text';
 import { FontSize, Font, Color } from '@libs/style';
 

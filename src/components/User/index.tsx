@@ -8,6 +8,7 @@ import { Events } from '@modules/EventUsers';
 import { FilePath } from '@modules/Apps';
 import { Text, Loading, ScrollView } from '@libs/ui';
 import { RootProps } from '@libs/common';
+import { navigation, setMessage } from '@libs/redux';
 import { Color, FontSize, Font, CardStyle } from '@libs/style';
 import Header from '@components/Apps/header';
 
@@ -156,7 +157,7 @@ export default class UserComponent extends React.Component<Props, State> {
         this.setState({ loaded: true });
       }
     } catch (e) {
-      throw e;
+      setMessage(e.message);
     }
   }
 
@@ -165,12 +166,10 @@ export default class UserComponent extends React.Component<Props, State> {
   }
 
   move(id: string) : void {
-    const { navigation } = this.props;
     navigation.push('Event', { id });
   }
 
   back() : void {
-    const { navigation } = this.props;
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {

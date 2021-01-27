@@ -8,10 +8,11 @@ import { Data } from '@modules/Events';
 import { Users } from '@modules/EventUsers';
 import EventUser from '@libs/models/EventUsers';
 import { Data as Profile } from '@modules/Profile';
-import { Text, Loading, Button, ScrollView, Toast } from '@libs/ui';
+import { Text, Loading, Button, ScrollView } from '@libs/ui';
 import { RootProps } from '@libs/common';
 import { Color, FontSize, Font } from '@libs/style';
 import Header from '@components/Apps/header';
+import { navigation, setMessage } from '@libs/redux';
 
 const Css = StyleSheet.create({
   container: {
@@ -121,7 +122,6 @@ interface State {
   loading: boolean;
   loaded: boolean;
   joined: boolean;
-  message: string | null;
 }
 
 export default class EventComponent extends React.Component<Props, State> {
@@ -134,7 +134,6 @@ export default class EventComponent extends React.Component<Props, State> {
       loading: false,
       loaded: false,
       joined: false,
-      message: null,
     };
   }
 
@@ -152,7 +151,7 @@ export default class EventComponent extends React.Component<Props, State> {
         });
       }
     } catch (e) {
-      throw e;
+      setMessage(e.message);
     }
   }
 
@@ -177,21 +176,17 @@ export default class EventComponent extends React.Component<Props, State> {
         loading: false,
         joined: this.isJoined,
       });
-      this.setState({
-        message: !data ? '参加しました' : 'キャンセルしました',
-      });
+      setMessage(!data ? '参加しました' : 'キャンセルしました');
     } catch (e) {
       throw e;
     }
   }
 
   move(id: string) : void {
-    const { navigation } = this.props;
-    navigation.push('User', { id });
+    navigation.navigate('User', { id });
   }
 
   back() : void {
-    const { navigation } = this.props;
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {
@@ -304,12 +299,6 @@ export default class EventComponent extends React.Component<Props, State> {
             onPress={() => this.save()}
           />
         </View>
-        {this.state.message ? (
-          <Toast
-            message={this.state.message}
-            onClose={() => this.setState({ message: null })}
-          />
-        ) : null}
       </View>
     );
   }

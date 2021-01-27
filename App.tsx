@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import store from './src/reducers';
+import { store } from './src/libs/redux';
 import Apps from './src/containers/Apps';
 
 const Css = StyleSheet.create({

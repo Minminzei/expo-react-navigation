@@ -24,7 +24,20 @@ const isConnected = (state = Types.initialState.isConnected, action: Action) => 
   }
 };
 
+const message = (state = Types.initialState.message, action: Action) => {
+  const { type } = action;
+  switch (type) {
+    case Types.actions.setMessage:
+      return action[Types.states.message];
+    case Types.actions.clearMessage:
+      return null;
+    default:
+      return state;
+  }
+};
+
 export default {
   [Types.states.initialized]: initialized,
   [Types.states.isConnected]: isConnected,
+  [Types.states.message]: message,
 };

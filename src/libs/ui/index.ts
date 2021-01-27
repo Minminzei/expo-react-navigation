@@ -8,6 +8,8 @@ import Camera from './Camera';
 import ImagePicker from './ImagePicker';
 import Picker from './Picker';
 import Toast from './Toast';
+import Message from './Message';
+import Ripple from './Ripple';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
 
 export {
@@ -21,5 +23,7 @@ export {
   ImagePicker,
   Picker,
   Toast,
+  Message,
+  Ripple,
   KeyboardAvoidingView,
 };

@@ -85,6 +85,7 @@ module.exports = async function(env, argv) {
     '@containers': `${baseDir}containers`,
     '@components': `${baseDir}components`,
     '@modules': `${baseDir}modules`,
+    '@reducers': `${baseDir}reducers`,
     '@libs': `${baseDir}libs`,
     'react-native': 'react-native-web',
     '@libs/sql': `${baseDir}libs/sqlweb`,

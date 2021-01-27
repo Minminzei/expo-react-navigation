@@ -7,6 +7,7 @@ import { Data, List } from '@modules/Events';
 import { RootProps } from '@libs/common';
 import { Text, Image } from '@libs/ui';
 import { CardStyle, Color } from '@libs/style';
+import { navigation, setMessage } from '@libs/redux';
 
 const Css = StyleSheet.create({
   card: {
@@ -48,7 +49,7 @@ export default class EventsComponent extends React.Component<Props, State> {
       this.mounted = true;
       await this.fetch({ page: 1 });
     } catch (e) {
-      throw e;
+      setMessage(e.message);
     }
   }
 
@@ -79,7 +80,6 @@ export default class EventsComponent extends React.Component<Props, State> {
   }
 
   move(id: string) : void {
-    const { navigation } = this.props;
     navigation.navigate('Event', { id });
   }
 

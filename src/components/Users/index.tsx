@@ -6,6 +6,7 @@ import Ripple from 'react-native-material-ripple';
 import { Data, List } from '@modules/Users';
 import { FilePath } from '@modules/Apps';
 import { Text, Image } from '@libs/ui';
+import { navigation, setMessage } from '@libs/redux';
 import { RootProps } from '@libs/common';
 import { CardStyle, FontSize, Color, Font } from '@libs/style';
 
@@ -97,7 +98,7 @@ export default class UsersComponent extends React.Component<Props, State> {
       this.mounted = true;
       await this.fetch({ page: 1 });
     } catch (e) {
-      throw e;
+      setMessage(e.message);
     }
   }
 
@@ -128,7 +129,6 @@ export default class UsersComponent extends React.Component<Props, State> {
   }
 
   move(id: string) : void {
-    const { navigation } = this.props;
     navigation.push('User', { id});
   }
 

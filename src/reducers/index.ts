@@ -1,5 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
 import Apps from './Apps';
 import Events from './Events';
 import Profile from './Profile';
@@ -14,4 +13,4 @@ const reducer = combineReducers({
   ...EventUsers,
 });
 
-export default createStore(reducer, applyMiddleware(thunk));
+export default reducer;
