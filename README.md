@@ -1,8 +1,5 @@
-# Expoデモ
+# デモ
 Expo, React Native, React Navigationを使ったios/android/web向けのサンプルアプリです
-
-#### demo
-https://exp.host/@minminzei/usagi
 
 #### 動作手順
 1. cocoapodsインストール
@@ -11,7 +8,7 @@ https://exp.host/@minminzei/usagi
   pod setup
   ```
 
-1. ライブラリをセットアップ
+1. セットアップ
   ```
   git close git@github.com:Minminzei/usagi.git
   yarn && cd ios && npx pod-install
@@ -23,7 +20,7 @@ https://exp.host/@minminzei/usagi
   yarn ios
 
   # for android
-  yarn run android
+  yarn android
 
   # for web
   yarn web
