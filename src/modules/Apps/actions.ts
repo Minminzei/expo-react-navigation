@@ -39,7 +39,7 @@ async function shouldInitialize() : Promise<boolean> {
     }
     return true;
   } catch (e) {
-    throw e;
+    return true;
   }
 }
 
@@ -57,7 +57,7 @@ export async function initializeFile() : Promise<void> {
 
     // 画像をロードする
     const images = require('@libs/datasources/Images');
-    const promises = Object.keys(images).map(filename => new Promise(async (resolve, reject) => {
+    const promises = Object.keys(images).map(filename => new Promise<void>(async (resolve) => {
       const [{ localUri }] = await Asset.loadAsync(images[filename]);
       if (!localUri) {
         resolve();
